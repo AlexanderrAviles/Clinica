@@ -282,6 +282,7 @@ public class MenuAdministrador extends javax.swing.JFrame {
 
         titulo.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
         titulo.setForeground(new java.awt.Color(255, 255, 255));
+        titulo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/logo22.png"))); // NOI18N
         titulo.setText("Clinica");
 
         jLabel2.setText("Menu ADMIN");
@@ -328,7 +329,7 @@ public class MenuAdministrador extends javax.swing.JFrame {
         pnlCentro.setLayout(pnlCentroLayout);
         pnlCentroLayout.setHorizontalGroup(
             pnlCentroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 696, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 750, Short.MAX_VALUE)
         );
         pnlCentroLayout.setVerticalGroup(
             pnlCentroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
