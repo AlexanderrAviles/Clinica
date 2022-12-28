@@ -5,6 +5,9 @@
  */
 package Vista;
 
+import Entidades.Personal;
+import ModeloRecepcionista.CargarSesion;
+import static ModeloRecepcionista.Conexion.getConexion;
 import java.awt.Color;
 import java.awt.MouseInfo;
 import java.awt.Point;
@@ -13,6 +16,10 @@ import java.util.logging.Logger;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import Vista.CambiaPanel;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 
 /**
  *
@@ -25,15 +32,25 @@ public class MenuKinesiologo extends javax.swing.JFrame {
     /**
      * Creates new form Principal
      */
-
     public MenuKinesiologo() {
         initComponents();
         this.setExtendedState(MAXIMIZED_BOTH);
         this.setLocationRelativeTo(this);
         this.btn1.setSelected(true);
+//        verSesion();
 
         new CambiaPanel(pnlPrincipal, new Vista.pnlRecep1());
     }
+    Connection con;
+    PreparedStatement ps;
+    ResultSet rs;
+
+//    public void verSesion() {
+//        ModeloRecepcionista.Verificar c = new ModeloRecepcionista.Verificar();
+//        c.verificarinicio(txtSesion);
+//        
+//       
+//    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -57,7 +74,7 @@ public class MenuKinesiologo extends javax.swing.JFrame {
         btnBuscarPaciente = new rsbuttom.RSButtonMetro();
         jPanel2 = new javax.swing.JPanel();
         titulo = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        txtSesion = new javax.swing.JLabel();
         pnlCentro = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         pnlPrincipal = new javax.swing.JPanel();
@@ -119,7 +136,7 @@ public class MenuKinesiologo extends javax.swing.JFrame {
         btn3.setBackground(new java.awt.Color(239, 238, 244));
         btn3.setForeground(new java.awt.Color(128, 128, 131));
         btn3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/chat.png"))); // NOI18N
-        btn3.setText("Panel 3");
+        btn3.setText("Ver Fichas");
         btn3.setColorHover(new java.awt.Color(204, 204, 204));
         btn3.setColorNormal(new java.awt.Color(239, 238, 244));
         btn3.setColorPressed(new java.awt.Color(204, 204, 204));
@@ -143,7 +160,7 @@ public class MenuKinesiologo extends javax.swing.JFrame {
         btn2.setBackground(new java.awt.Color(239, 238, 244));
         btn2.setForeground(new java.awt.Color(128, 128, 131));
         btn2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/collection.png"))); // NOI18N
-        btn2.setText("Panel 2");
+        btn2.setText("Crear Ficha");
         btn2.setColorHover(new java.awt.Color(204, 204, 204));
         btn2.setColorNormal(new java.awt.Color(239, 238, 244));
         btn2.setColorPressed(new java.awt.Color(204, 204, 204));
@@ -204,7 +221,7 @@ public class MenuKinesiologo extends javax.swing.JFrame {
         btnBuscarPaciente.setBackground(new java.awt.Color(239, 238, 244));
         btnBuscarPaciente.setForeground(new java.awt.Color(128, 128, 131));
         btnBuscarPaciente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/feeedback.png"))); // NOI18N
-        btnBuscarPaciente.setText("Buscar Paciente");
+        btnBuscarPaciente.setText("Crear Sesion");
         btnBuscarPaciente.setColorHover(new java.awt.Color(204, 204, 204));
         btnBuscarPaciente.setColorNormal(new java.awt.Color(239, 238, 244));
         btnBuscarPaciente.setColorPressed(new java.awt.Color(204, 204, 204));
@@ -289,7 +306,7 @@ public class MenuKinesiologo extends javax.swing.JFrame {
         titulo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/images/logo22.png"))); // NOI18N
         titulo.setText("Clinica");
 
-        jLabel2.setText("MENU KINESIOLOGO");
+        txtSesion.setText("MENU KINESIOLOGO");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -299,7 +316,7 @@ public class MenuKinesiologo extends javax.swing.JFrame {
                 .addGap(59, 59, 59)
                 .addComponent(titulo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 624, Short.MAX_VALUE)
-                .addComponent(jLabel2)
+                .addComponent(txtSesion)
                 .addGap(77, 77, 77))
         );
         jPanel2Layout.setVerticalGroup(
@@ -308,7 +325,7 @@ public class MenuKinesiologo extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(titulo)
-                    .addComponent(jLabel2))
+                    .addComponent(txtSesion))
                 .addContainerGap())
         );
 
@@ -405,7 +422,7 @@ public class MenuKinesiologo extends javax.swing.JFrame {
     }//GEN-LAST:event_btn1MousePressed
 
     private void btn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn3ActionPerformed
-        new CambiaPanel(pnlPrincipal, new Vista.BuscadorPaciente());
+        new CambiaPanel(pnlPrincipal, new Vista.VistaFichas());
         if (this.btn3.isSelected()) {
             this.btn3.setColorNormal(new Color(204, 204, 204));
             this.btn3.setColorHover(new Color(204, 204, 204));
@@ -531,7 +548,7 @@ public class MenuKinesiologo extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscarPacienteMousePressed
 
     private void btnBuscarPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarPacienteActionPerformed
-        new CambiaPanel(pnlPrincipal, new Vista.BuscadorPaciente());
+        new CambiaPanel(pnlPrincipal, new Vista.Sesion());
         if (this.btnBuscarPaciente.isSelected()) {
             this.btn1.setColorNormal(new Color(239, 238, 244));
             this.btn1.setColorHover(new Color(204, 204, 204));
@@ -628,7 +645,6 @@ public class MenuKinesiologo extends javax.swing.JFrame {
     public rsbuttom.RSButtonMetro btn5;
     public rsbuttom.RSButtonMetro btnBuscarPaciente;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
@@ -638,5 +654,6 @@ public class MenuKinesiologo extends javax.swing.JFrame {
     private javax.swing.JPanel pnlMenu;
     private javax.swing.JPanel pnlPrincipal;
     private javax.swing.JLabel titulo;
+    public javax.swing.JLabel txtSesion;
     // End of variables declaration//GEN-END:variables
 }

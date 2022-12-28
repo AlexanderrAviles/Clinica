@@ -34,7 +34,7 @@ public class FormLogin extends javax.swing.JFrame {
         passLabel1 = new javax.swing.JLabel();
         tipoUsuario = new javax.swing.JComboBox<>();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setLocationByPlatform(true);
         setUndecorated(true);
         setResizable(false);

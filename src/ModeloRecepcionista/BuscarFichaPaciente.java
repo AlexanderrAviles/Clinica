@@ -29,8 +29,8 @@ public class BuscarFichaPaciente extends Conexion {
             JOptionPane.showMessageDialog(rootPane, "Ingrese Rut", "Error", 1);
         } else {
             try {
-                con = getConexion();
-                ps = con.prepareStatement("SELECT * FROM paciente WHERE rut=?");
+                con = Conexion.getConexion();
+                ps = con.prepareStatement("SELECT * FROM paciente WHERE id=?");
                 ps.setString(1, brut);
                 rs = ps.executeQuery();
                 if (rs.next()) {
@@ -38,16 +38,10 @@ public class BuscarFichaPaciente extends Conexion {
                     txtNombre.setText(rs.getString("nombre"));
                     txtApellidoP.setText(rs.getString("apellido_paterno"));
                     txtApellidoM.setText(rs.getString("apellido_materno"));
-                    txtRut.setText(rs.getString("rut"));
-                    txtFechaNacimiento.setText(rs.getString("fecha_nacimiento"));
                     txtSexo.setText(rs.getString("sexo"));
                     txtTelefono.setText(rs.getString("telefono"));
                     txtDireccion.setText(rs.getString("direccion"));
                     txtPrevision.setText(rs.getString("prevision"));
-                    txtDiagnostico.setText(rs.getString("diagnostico_medico"));
-                    txtIndicacion.setText(rs.getString("indicacion_medica"));
-                    txtExamenes.setText(rs.getString("examenes"));
-                    txtMedicamentos.setText(rs.getString("medicamentos"));
 
                 }
 

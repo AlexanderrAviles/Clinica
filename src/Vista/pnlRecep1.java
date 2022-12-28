@@ -29,10 +29,8 @@ public class pnlRecep1 extends javax.swing.JPanel {
 
         title = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(255, 255, 255));
-
         title.setFont(new java.awt.Font("Roboto Black", 1, 24)); // NOI18N
-        title.setText("PANEL RECEP 1");
+        title.setText("Inicio");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -41,7 +39,7 @@ public class pnlRecep1 extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(199, 199, 199)
                 .addComponent(title)
-                .addContainerGap(270, Short.MAX_VALUE))
+                .addContainerGap(396, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

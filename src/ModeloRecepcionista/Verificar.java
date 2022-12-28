@@ -40,17 +40,23 @@ public class Verificar extends Conexion {
                     String sl = rs.getString("Rol_id");
                     String nom = rs.getString("nombre");
                     String ape = rs.getString("apellido_paterno");
+                    String rut = rs.getString("id");
+//                    CargarSesion c = new CargarSesion();
+//                    c.verSesion(rut);
                     if (option.equalsIgnoreCase("Administrador") && sl.equalsIgnoreCase("1")) {
                         MenuAdministrador ad = new MenuAdministrador();
                         ad.setVisible(true);
                         JOptionPane.showMessageDialog(null, "Bienvenido(a) " + nom + " " + ape);
+                        
+
                     }
-                    if (option.equalsIgnoreCase("Kinesiologo") && sl.equalsIgnoreCase("1")) {
+                    if (option.equalsIgnoreCase("Kinesiologo") && sl.equalsIgnoreCase("2")) {
                         MenuKinesiologo kn = new MenuKinesiologo();
                         kn.setVisible(true);
                         JOptionPane.showMessageDialog(null, "Bienvenido(a) " + nom + " " + ape);
+
                     }
-                    if (option.equalsIgnoreCase("Recepcionista") && sl.equalsIgnoreCase("2")) {
+                    if (option.equalsIgnoreCase("Recepcionista") && sl.equalsIgnoreCase("3")) {
                         MenuRecepcionista rc = new MenuRecepcionista();
                         rc.setVisible(true);
                         JOptionPane.showMessageDialog(null, "Bienvenido(a) " + nom + " " + ape);
